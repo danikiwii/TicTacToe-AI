@@ -3,10 +3,7 @@ import random
 
 class Player(): 
     def __init__(self,letter): 
-        #  que jugador tiene o y x
         self.letter = letter
-        
-    # es la función de llevar a cabo el turno
     def get_move (self):
         pass
 
@@ -17,7 +14,7 @@ class RandomComputerPlayer (Player):
         super().__init__(letter)
         
     def get_move (self,game):
-        square = random.choice(game.available_moves())        # game queda por hacerse
+        square = random.choice(game.available_moves())  
         return square
 
 
@@ -50,7 +47,7 @@ class GeniusComputerPlayer(Player):
         if game.num_empty_squares() == 9: 
             square = int (random.choice (game.available_moves))
         else: 
-            square = int(self.minimax(game,self.letter)['position']) #position porque minimax devuelve un diccionario
+            square = int(self.minimax(game,self.letter)['position']) # position porque minimax devuelve un diccionario
         return square
     
     def minimax (self,state,player): 
@@ -63,21 +60,8 @@ class GeniusComputerPlayer(Player):
         else: 
             other_player='o'
         
-    # see if the previous move is the winner
-    # this is our base case
-    # we need to return the position and the score
-    
-        '''
-        if state.current_winner == other_player: 
-            if other_player == max_player: 
-                score = (state.num_empty_squares+1)*1
-            else: 
-                score = (state.num_empty_squares+1)*(-1)
-            return {'position': None, 'score' : score}
-        '''
-        
-        # se comprobará si se ha llegado a un estado terminal cuando se llame a la propia función minimax dentro de minimax
-        # ESTADO TERMINAL si gana el otro
+        # se comprobará si se ha llegado a un estado terminal.
+        # Cuando eso pase se devuelve un diccionario con el movimiento y su puntuación
         if state.current_winner == max_player: 
             score = (state.num_empty_squares()+1)*1     
             return {'position': None, 'score' : score}
@@ -101,7 +85,6 @@ class GeniusComputerPlayer(Player):
         for posible_move in state.available_moves(): 
             state.make_move(posible_move , player) 
             # en la función de la clase TikTakToe, los argumentos son (square, letter)
-            # sim score es el diccionario que retorna la función minimax
             sim_score = self.minimax (state,other_player)   
            
             # se ejecuta hasta aquí hasta que la rama de la partida llega al fin

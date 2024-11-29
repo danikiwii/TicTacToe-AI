@@ -7,7 +7,7 @@ class TikTakToe ():
     #imprimir el tablero por pantalla    
     def print_board(self): 
          for i in range (3): 
-            # delimitamos el índice final e inicial de cada fila
+            # delimitamos las filas por el índice final e inicial de cada fila
             start_row = i*3
             end_row = (i+1)*3
             row = self.board[start_row : end_row] # [1,2,3][3,5,6][7,8,9]
@@ -15,14 +15,12 @@ class TikTakToe ():
             # imprimo las líneas verticales con los espacios del tablero
             formatted_row = '| '+ row[0] + ' | ' + row[1] + ' | ' + row[2] + ' | '
             print (formatted_row)
-            
-    # el método estáticono es independiente a los objetos. 
-    # Digo que es un método etático porque el programa es más eficiente        
+      
     @staticmethod
     # | 1 | 2 | 3 | etc...
     def print_board_nums(): 
         for i in range (3): 
-            # delimitamos el índice final e inicial de cada fila
+            # hacemo 3 filas con los números correspondientes
             row = [i*3 , i*3+1 , (i+1)*3-1]
            
             # imprimo las líneas verticales con los espacios del tablero
@@ -30,7 +28,7 @@ class TikTakToe ():
             print (formatted_row)       
         
     def available_moves (self): 
-        # return a list whith the the possible available moves
+        # devuelve una lista con los movimientos que quedan libres
         moves = []
         for (i,spot) in enumerate(self.board): 
             if spot==' ': 
@@ -47,7 +45,7 @@ class TikTakToe ():
     def num_empty_squares (self): 
         return self.board.count (' ')
     
-    # si el movimiento es válido, ejecutarlo. Si es falso...
+    # si el movimiento es válido, ejecutarlo.
     # también comprobamos si al hacer el movimiento se ha terminado la partida
     def make_move (self,square, letter): 
         if self.board[square]==' ':

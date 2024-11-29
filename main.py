@@ -17,8 +17,8 @@ def play(game,x_player,o_player,print_game = True):
         else: 
             square = x_player.get_move(game)
             
-        #se ejecuta si la jugada es válida
-        #printea el movimiento
+        # se ejecuta si la jugada es válida
+        # printea el movimiento
         if game.make_move(square,letter):
             if print_game: 
                 print (f'player {letter} makes a move to square {square}')
