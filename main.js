@@ -1,8 +1,8 @@
-import { RandomComputerPlayer, HumanPlayer } from './players.js';
+import { RandomComputerPlayer, HumanPlayer, GeniousComputerPlayer} from './players.js';
 import TicTacToe from "./game.js";
 
 let x_player = new HumanPlayer('x');
-let o_player = new HumanPlayer('o');
+let o_player = new RandomComputerPlayer('o');
 let game = new TicTacToe();
 
 play(game, x_player, o_player);
@@ -28,12 +28,9 @@ async function play(game, x_player, o_player){
 
         if (game.winner_I(position, letter)==true || game.winner_II(position, letter)==true || game.winner_III(position, letter)==true){
             alert(`ha ganado el jugador ${letter}!`);
-            //return letter;
+            return letter;
 
         }
-
-        // espera medio segundo
-        //await game.delay(500);
 
         //cambio de turno
         if (letter=='x'){
@@ -45,4 +42,5 @@ async function play(game, x_player, o_player){
             player = x_player;
         }
     }   
+    alert('empate!');
 }

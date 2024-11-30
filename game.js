@@ -40,9 +40,6 @@ class TicTacToe {
         this.board[position] = letter;
     }
     
-    delay(miliseconds) {
-        return new Promise(resolve => setTimeout(resolve,miliseconds))
-    }
 
     winner_I(square, letter){
         // ganar por horizontal

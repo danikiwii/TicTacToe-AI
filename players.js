@@ -5,7 +5,8 @@ class player {
 }
 
 export class RandomComputerPlayer extends player {
-    get_move(button_list, available_moves){
+    async get_move(button_list, available_moves){
+        await this.delay(500);
         let random_index = Math.floor(Math.random() * available_moves.length);
         let position = available_moves[random_index];
 
@@ -13,6 +14,10 @@ export class RandomComputerPlayer extends player {
         button_list[position].textContent=this.letter;
         //devuelve la posición elegida
         return position;
+    }
+
+    delay(miliseconds) {
+        return new Promise(resolve => setTimeout(resolve,miliseconds))
     }
 }
 
@@ -28,6 +33,18 @@ export class HumanPlayer extends player {
                 });
             }
         });
+    }
+}
+
+export class GeniousComputerPlayer extends player {
+    async get_move(button_list, available_moves){
+        if (available_moves.length==9){
+            let random_index = Math.floor(Math.random() * available_moves.length);
+            let position = available_moves[random_index];    
+        }
+        else{
+            position = this.minimax()
+        }
     }
 }
 
