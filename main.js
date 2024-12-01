@@ -1,11 +1,10 @@
 import { RandomComputerPlayer, HumanPlayer, GeniousComputerPlayer} from './players.js';
 import TicTacToe from "./game.js";
+import {endGame} from './gameController.js';
 
 let x_player = new GeniousComputerPlayer('x');
 let o_player = new GeniousComputerPlayer('o');
 let game = new TicTacToe();
-
-play(game, x_player, o_player);
 
 
 
@@ -43,4 +42,29 @@ async function play(game, x_player, o_player){
         }
     }   
     alert('empate!');
+    endGame();
+    //resetGame();
 }
+
+
+function resetGame() {
+    // Ocultar el botón de Game Over cuando reiniciamos el juego
+    const gameOverButton = document.getElementById('game-over-btn');
+    gameOverButton.style.display = 'none'; // Ocultamos el botón
+
+    console.log('Juego terminado, jugar de nuevo');
+}
+
+
+/*let play_again = false;
+do{
+    play_again = false;
+    play(game, x_player, o_player);
+    // reset_game() devuelve true si se ha pulsado el botón.
+    play_again=resetGame();
+    console.log ('');
+}
+
+while (play_again==true);
+*/  
+play(game, x_player, o_player);
