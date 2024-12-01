@@ -17,16 +17,16 @@ async function play(game, x_player, o_player){
     let letter = 'x';
 
     while (game.empty_squares() == true) {
-
+        console.log (game.available_moves());
         // se espera a que el jugador elija con await
         // se printea su eleccion
-        let position = await player.get_move(button_list, game.available_moves());
+        let position = await player.get_move(button_list, game);
         //el movimiento se guarda en la lista del tablero
         game.save_move(position, letter);
 
 
 
-        if (game.winner_I(position, letter)==true || game.winner_II(position, letter)==true || game.winner_III(position, letter)==true){
+        if (game.winner != null){
             alert(`ha ganado el jugador ${letter}!`);
             return letter;
 

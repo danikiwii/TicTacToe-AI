@@ -1,6 +1,7 @@
 class TicTacToe {
     constructor() {
         this.board = new Array(9).fill("");
+        this.winner = null;
     }
 
     create_board(){
@@ -19,7 +20,7 @@ class TicTacToe {
         return button_list;
     }
 
-    //revisado ok
+    // devuelve una lista con los movimientos disponibles
     available_moves(){
         let moves = [];
         for (let i=0; i<this.board.length; i++) {
@@ -30,14 +31,31 @@ class TicTacToe {
         return moves;
     }
 
+    // devuelve true si hay algun cuadrado vacío
     empty_squares(){
         return this.board.includes("");
    
     }
 
+    // devuelve el número de casillas vacías
+    num_empty_squares(){
+        let num = 0;
+        this.board.forEach(square =>{
+            if (square==''){
+                num++;
+            }
+        });
+        return num;
+    }
+
     save_move(position, letter){
         // se guarda el movimiento en el la lista del tablero
         this.board[position] = letter;
+
+        // se comprueba si el jugador ha ganado
+        if (this.winner_I(position, letter)==true || this.winner_II(position, letter)==true || this.winner_III(position, letter)==true){
+            this.winner = letter;
+        }  
     }
     
 
@@ -78,8 +96,6 @@ class TicTacToe {
             diagonal1.push(this.board[diagonal1_spots[i]]);
             diagonal2.push(this.board[diagonal2_spots[i]]);
         }
-        console.log(diagonal1);
-        console.log(diagonal2);
 
         let win1 = true;
         let win2 = true;

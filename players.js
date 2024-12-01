@@ -2,13 +2,16 @@ class player {
     constructor(letter){
         this.letter = letter;
     }
+    delay(miliseconds) {
+        return new Promise(resolve => setTimeout(resolve,miliseconds))
+    }
 }
 
 export class RandomComputerPlayer extends player {
-    async get_move(button_list, available_moves){
+    async get_move(button_list, game){
         await this.delay(500);
-        let random_index = Math.floor(Math.random() * available_moves.length);
-        let position = available_moves[random_index];
+        let random_index = Math.floor(Math.random() * game.available_moves().length);
+        let position = game.available_moves()[random_index];
 
         //imprime la letra en el tablero
         button_list[position].textContent=this.letter;
@@ -16,35 +19,110 @@ export class RandomComputerPlayer extends player {
         return position;
     }
 
-    delay(miliseconds) {
-        return new Promise(resolve => setTimeout(resolve,miliseconds))
-    }
+
 }
 
 export class HumanPlayer extends player {
-    get_move(button_list, available_moves) {
+    get_move(button_list, game) {
         return new Promise(resolve => {
-            // Recorre las posibles posiciones de los botones disponibles
-            for (let i = 0; i < available_moves.length; i++) {
-                button_list[available_moves[i]].addEventListener('click', (event) => {
-                    button_list[available_moves[i]].textContent = this.letter;
-    
-                    resolve(available_moves[i]);
+            // Elimina listeners previos
+            button_list.forEach(button => {
+                const newButton = button.cloneNode(true);
+                button.replaceWith(newButton); // Reemplaza por el clon
+                button_list[button_list.indexOf(button)] = newButton; // Actualiza la lista
+            });
+            // Recorre movimientos disponibles y asigna eventos
+            const availableMoves = game.available_moves();
+            availableMoves.forEach(index => {
+                button_list[index].addEventListener('click', () => {
+                    button_list[index].textContent = this.letter;
+                    resolve(index);
                 });
-            }
+            });
         });
     }
 }
 
+
 export class GeniousComputerPlayer extends player {
-    async get_move(button_list, available_moves){
-        if (available_moves.length==9){
-            let random_index = Math.floor(Math.random() * available_moves.length);
-            let position = available_moves[random_index];    
+    async get_move(button_list, game){
+        await this.delay(500);
+        let position = 0;
+        if (game.available_moves().length==9){
+            let random_index = Math.floor(Math.random() * game.available_moves().length);
+            position = game.available_moves()[random_index];    
         }
         else{
-            position = this.minimax()
+            position = this.minimax(game)[['spot']];
         }
+        //imprime la letra en el tablero
+        button_list[position].textContent=this.letter;
+        //devuelve la posición elegida
+        return position;
     }
-}
+
+    minimax (game) {
+        const max_player = this.letter;
+        if (max_player=='x'){
+            other_player=='o';
+        }
+        else{
+            other_player=='x';
+        }
+
+        // condiciones de final de partida
+        // estos valores de retorno no son los finales, son intermedios
+        if (game.winner == max_player){
+            score = (game.num_empty_squares()+1)*1;
+            return {'spot':null,'score':score};
+        }
+        if (game.winner == other_player){
+            score = (game.num_empty_squares()+1)*(-1);
+            return {'spot':null,'score':score};
+        }
+        if (num_empty_squares == 0) {
+            score = 0;
+            return {'spot':null,'score':score};
+        }
+
+        // incicializando best, lo que retornará minimax en últina instancia
+        // esto se ejecuta hasta que minimax recorra toda la partida
+        let best={'spot':null, 'score':null};
+        if (this.letter==max_player){
+            best['score']= -Infinity;
+        }
+        else{
+            best['score']= Infinity;
+        }
+
+        // vamos recorriendo la partida
+        game.available_moves().forEach (possible_move => {
+            game.save_move(possible_move, this.letter);
+            //sim_score es un diccionario
+            let sim_score = this.minimax(game);
+
+            sim_score['spot'] = possible_move;
+
+            game.board[possible_move] = '';
+            game.winner = null;
+
+            if (letter==max_player) {
+                if (sim_score['score'] > best['score']){
+                    best = sim_score;
+                }
+            }
+            else{
+                if (sim_score['score'] < best['score']){
+                    best = sim_score;
+                }
+            }
+
+
+        })
+        return best;
+
+
+    }
+}   
+
 
