@@ -53,7 +53,7 @@ export class GeniousComputerPlayer extends player {
             position = game.available_moves()[random_index];    
         }
         else{
-            position = this.minimax(game)[['spot']];
+            position = this.minimax(game, this.letter)['spot'];
         }
         //imprime la letra en el tablero
         button_list[position].textContent=this.letter;
@@ -61,34 +61,36 @@ export class GeniousComputerPlayer extends player {
         return position;
     }
 
-    minimax (game) {
+    minimax (game, letter) {
+        // this.letter y no letter, porque el jugador a maximizar es siempre el mismo, independientemente de con  que argumento se llame minimax
         const max_player = this.letter;
-        if (max_player=='x'){
-            other_player=='o';
+        let other_player = '';
+        if (letter=='x'){
+            other_player='o';
         }
         else{
-            other_player=='x';
+            other_player='x';
         }
 
         // condiciones de final de partida
         // estos valores de retorno no son los finales, son intermedios
         if (game.winner == max_player){
-            score = (game.num_empty_squares()+1)*1;
+            const score = (game.num_empty_squares()+1)*1;
             return {'spot':null,'score':score};
         }
         if (game.winner == other_player){
-            score = (game.num_empty_squares()+1)*(-1);
+            const score = (game.num_empty_squares()+1)*(-1);
             return {'spot':null,'score':score};
         }
-        if (num_empty_squares == 0) {
-            score = 0;
+        if (game.num_empty_squares() == 0) {
+            const score = 0;
             return {'spot':null,'score':score};
         }
 
         // incicializando best, lo que retornará minimax en últina instancia
         // esto se ejecuta hasta que minimax recorra toda la partida
         let best={'spot':null, 'score':null};
-        if (this.letter==max_player){
+        if (letter==max_player){
             best['score']= -Infinity;
         }
         else{
@@ -97,9 +99,9 @@ export class GeniousComputerPlayer extends player {
 
         // vamos recorriendo la partida
         game.available_moves().forEach (possible_move => {
-            game.save_move(possible_move, this.letter);
+            game.save_move(possible_move, letter);
             //sim_score es un diccionario
-            let sim_score = this.minimax(game);
+            let sim_score = this.minimax(game, other_player);
 
             sim_score['spot'] = possible_move;
 

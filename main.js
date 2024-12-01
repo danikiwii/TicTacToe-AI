@@ -1,8 +1,8 @@
 import { RandomComputerPlayer, HumanPlayer, GeniousComputerPlayer} from './players.js';
 import TicTacToe from "./game.js";
 
-let x_player = new HumanPlayer('x');
-let o_player = new RandomComputerPlayer('o');
+let x_player = new GeniousComputerPlayer('x');
+let o_player = new GeniousComputerPlayer('o');
 let game = new TicTacToe();
 
 play(game, x_player, o_player);
