@@ -8,6 +8,18 @@ export function endGame() {
 // Función para reiniciar el juego
 
 /*export function resetGame() {
+        const button = document.getElementById('game-over-btn')
+        button.addEventListener('click',() =>{
+            // Ocultar el botón de Game Over cuando reiniciamos el juego
+            const gameOverButton = document.getElementById('game-over-btn');
+            gameOverButton.style.display = 'none'; // Ocultamos el botón
+
+            console.log('jugar de nuevo')
+            return true;
+        });
+}*/
+
+export function resetGame() {
     return new Promise((resolve) => {
         const button = document.getElementById('game-over-btn')
         button.addEventListener('click',() =>{
@@ -21,15 +33,5 @@ export function endGame() {
         });
     });
 }
-*/
 
-/*
-export function resetGame() {
-    // Ocultar el botón de Game Over cuando reiniciamos el juego
-    const gameOverButton = document.getElementById('game-over-btn');
-    gameOverButton.style.display = 'none'; // Ocultamos el botón
 
-    console.log('Juego terminado, jugar de nuevo');
-}
-
-*/
