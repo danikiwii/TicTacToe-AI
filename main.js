@@ -2,7 +2,7 @@ import { RandomComputerPlayer, HumanPlayer, GeniousComputerPlayer} from './playe
 import TicTacToe from "./game.js";
 import {endGame, resetGame} from './gameController.js';
 
-let x_player = new GeniousComputerPlayer('x');
+let x_player = new HumanPlayer('x');
 let o_player = new GeniousComputerPlayer('o');
 let game = new TicTacToe();
 
@@ -43,6 +43,7 @@ async function play(game, x_player, o_player){
     }   
 }
 
+
 let play_again = false;
 async function start_game() { 
     do{
@@ -51,7 +52,7 @@ async function start_game() {
         //alert('empate!');
         endGame();
         // devuelve true si se ha pulsado en jugar otra vez
-        play_again = await resetGame();
+        play_again = await resetGame(game);
         console.log(play_again);
     }
     while(play_again = true);

@@ -6,7 +6,7 @@ class TicTacToe {
 
     create_board(){
         // crea el tablero y devuelve una lista con todos los botones
-        const tablero = document.querySelector('.tablero');
+        const tablero = document.getElementById('tablero');
         let button_list = [];
 
         for (let position = 0; position < 9; position++) {
