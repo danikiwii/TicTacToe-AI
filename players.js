@@ -9,7 +9,7 @@ class player {
 
 export class RandomComputerPlayer extends player {
     async get_move(button_list, game){
-        await this.delay(500);
+        await this.delay(300);
         let random_index = Math.floor(Math.random() * game.available_moves().length);
         let position = game.available_moves()[random_index];
 
@@ -46,7 +46,7 @@ export class HumanPlayer extends player {
 
 export class GeniousComputerPlayer extends player {
     async get_move(button_list, game){
-        await this.delay(500);
+        await this.delay(300);
         let position = 0;
         if (game.available_moves().length==9){
             let random_index = Math.floor(Math.random() * game.available_moves().length);
