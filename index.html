@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pruebaStyles.css">
+    <title>Prueba Tablero</title>
+</head>
+<body>
+    <div id="contenedorPrincipal">
+        <div id="selectPlayerSection">
+            <button id="BotonElegirJugador" class="botonArriba">Elegir jugadores</button>
+            <button id="BotonJugar" style="display: none;" class="botonArriba">Jugar</button>
+            <div id="selectPlayerTable">
+                <div class="titulo_jugador azul_titulo">x</div>
+                <div class="titulo_jugador rojo_titulo">o</div>
+                <button class="botonMenu azul" id="humano_x">Humano</button>
+                <button class="botonMenu rojo" id="humano_o">Humano</button>
+                <button class="botonMenu azul" id="tonta_x">Máquina tonta</button>
+                <button class="botonMenu rojo" id="tonta_o">Máquina tonta</button>
+                <button class="botonMenu azul" id="lista_x">Máquina inteligente</button>
+                <button class="botonMenu rojo" id="lista_o">Máquina inteligente</button>
+            </div>
+        </div>
+
+        <div class="separador"></div>
+        <div id="tablero"></div>
+        <div class="separador"></div>
+
+        <div id="endGame" style="display:none;">
+            <p id="resultado"></p>
+            <button id="game-over-btn">Jugar otra vez</button>
+        </div>
+    </div>
+   
+    <script type="module" src="main.js"></script>
+    
+
+
+</body>
+</html>

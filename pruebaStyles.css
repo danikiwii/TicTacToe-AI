@@ -17,7 +17,97 @@ body {
     /*border: 2px solid #555;*/
 
     box-sizing: border-box;
+    padding: 40px;
+
 }
+
+
+/*---------------------------------------------------------------*/
+
+#selectPlayerSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;  
+    height: auto; 
+
+    box-sizing: border-box;
+}
+
+.botonArriba {
+    width: 100%;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #555;
+    border-radius: 0px;
+    background-color: #fff;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+    margin: 10px;
+}
+.botonArriba:hover {
+    background-color: #e0e0e0;
+}
+
+#selectPlayerTable {
+    display: grid;
+    box-sizing: border-box;
+
+    grid-template-columns: repeat(2, 1fr); /* 3 columnas de 100px */
+    grid-template-rows: repeat(4, 1fr);    /* 3 filas de 100px */
+    grid-gap: 3px;
+    width: 100%;
+    height: 150px;
+    justify-items: center; /* Centra los botones dentro de sus celdas */
+    /*border: 2px solid #555;*/
+}
+
+.titulo_jugador {
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    /*border: 2px solid #555;*/
+    border-radius: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    
+
+}
+.botonMenu {
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 0px solid #555;
+    border-radius: 0px;
+    transition: background-color 0.2s ease;
+    
+}
+.botonMenu:hover {
+    background-color: #d1d1d1;
+}
+
+.rojo{
+    background-color: #ffb6c148;
+}
+.azul{
+    background-color: #add8e63c;
+}
+.rojo_titulo{
+    background-color: #FFB6C1;
+}
+.azul_titulo{
+    background-color: #ADD8E6;
+}
+
+
+/*---------------------------------------------------------*/
+
+
 
 #tablero {
     display: grid;
@@ -26,7 +116,7 @@ body {
     background-color: #fff; 
     grid-template-columns: repeat(3, 1fr); /* 3 columnas de 100px */
     grid-template-rows: repeat(3, 1fr);    /* 3 filas de 100px */
-    grid-gap: 10px;
+    grid-gap: 15px;
     width: 100%;
     aspect-ratio: 1;
     justify-items: center; /* Centra los botones dentro de sus celdas */
@@ -34,8 +124,8 @@ body {
 }
 
 #tablero button {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     font-size: 3rem;
     cursor: pointer;
     border: 2px solid #555;
@@ -53,29 +143,35 @@ body {
     aspect-ratio: 10;
 }
 
+
+/*-------------------------------------------------------------*/
+
 #endGame {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
-    aspect-ratio: 3;
+    height: auto;
     background-color: #fff;
     /*border: 2px solid #555;*/
-
 }
+
 #resultado {
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: center;
-    height: 50%;
+    padding: 5px;
+    box-sizing: border-box;
     margin: 0;
+    
 }
 
 #game-over-btn {
+    box-sizing: border-box;
     width: 100%;
-    height: 50%;
+    height: 30px;
     font-size: 1em;
     border: 2px solid #555;
     transition: background-color 0.2s ease;

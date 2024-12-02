@@ -1,16 +1,25 @@
-import { RandomComputerPlayer, HumanPlayer, GeniousComputerPlayer} from './players.js';
 import TicTacToe from "./game.js";
-import {endGame, resetGame, print_winner} from './gameController.js';
+import {endGame, resetGame, print_winner, choose_player, deploy_menu} from './gameController.js';
 
-let x_player = new HumanPlayer('x');
-let o_player = new GeniousComputerPlayer('o');
+
+deploy_menu();
+let x_player;
+let o_player;
+asign_players();
 let game = new TicTacToe();
 
 
 
+
+async function asign_players() {
+    x_player = await choose_player('x');
+    o_player = await choose_player('o');   
+}
+
+
 async function play(game, x_player, o_player){
     //se crea el tablero y se guarda la lista de botones
-    let button_list = game.create_board();
+    //let button_list = game.create_board();
     //empieza el jugador x
     let player = x_player;
     let letter = 'x';

@@ -1,3 +1,5 @@
+import { GeniousComputerPlayer, HumanPlayer, RandomComputerPlayer } from "./players.js";
+
 export function endGame() {
     // Muestra el botón de Game Over
     const gameOverDiv = document.getElementById('endGame');
@@ -37,6 +39,53 @@ export function print_winner(winner) {
         texto = `ha ganado el jugador ${winner}!`;    
     }
     document.getElementById('resultado').innerHTML = texto;
+}
+
+
+// reviasar
+export function choose_player (letter) {
+    let button_humano;
+    let button_tonta;
+    let button_lista;
+
+    if (letter=='x'){
+        button_humano = document.getElementById('humano_x');
+        button_tonta = document.getElementById('tonta_x');
+        button_lista = document.getElementById('lista_x');
+    }
+    else{
+        button_humano = document.getElementById('humano_o');
+        button_tonta = document.getElementById('tonta_o');
+        button_lista = document.getElementById('lista_o');
+    }
+
+    return new Promise((resolve) => {
+    
+        button_humano.addEventListener('click',() =>{  
+            resolve(new HumanPlayer(letter));
+            
+        });
+        button_tonta.addEventListener('click',() =>{  
+            resolve(new RandomComputerPlayer(letter));
+            
+        });
+        button_lista.addEventListener('click',() =>{  
+            resolve(new GeniousComputerPlayer(letter));
+            
+        });
+    });
+
+}
+
+export function deploy_menu() {
+    const menu_button = document.getElementById('BotonElegirJugador');
+    const play_button = document.getElementById('BotonJugar');
+    const menu = document.getElementById('selectPlayerTable');
+    menu_button.addEventListener('click',()=>{
+        menu.style.display = 'block';
+        play_button.style.display = 'block';
+        menu_button.style.displau = 'none';
+    });
 }
 
 
