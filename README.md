@@ -17,5 +17,5 @@
 
 
 ## Ejecutar en el navegador
-   - Ir a este `[enlace](https://danikiwii.github.io/TicTacToe-AI/)` y jugar.
+   - Ir a este [enlace](https://danikiwii.github.io/TicTacToe-AI/) y jugar.
    - Por el momento, no es posible cambiar de tipo de jugador.
