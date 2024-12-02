@@ -7,9 +7,17 @@
     <title>Prueba Tablero</title>
 </head>
 <body>
-    <div id="tablero"></div>
+    <div id="contenedorPrincipal">
+        <div id="tablero"></div>
+        <div class="separador"></div>
+        <div id="endGame" style="display:none;">
+            <p id="resultado"></p>
+            <button id="game-over-btn">Jugar otra vez</button>
+        </div>
+    </div>
+   
     <script type="module" src="main.js"></script>
-    <button id="game-over-btn" style="display:none;">Game Over</button>
+    
 
 
 </body>

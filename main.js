@@ -1,6 +1,6 @@
 import { RandomComputerPlayer, HumanPlayer, GeniousComputerPlayer} from './players.js';
 import TicTacToe from "./game.js";
-import {endGame, resetGame} from './gameController.js';
+import {endGame, resetGame, print_winner} from './gameController.js';
 
 let x_player = new HumanPlayer('x');
 let o_player = new GeniousComputerPlayer('o');
@@ -26,7 +26,7 @@ async function play(game, x_player, o_player){
 
 
         if (game.winner != null){
-            alert(`ha ganado el jugador ${letter}!`);
+            print_winner(letter);
             return letter;
 
         }
@@ -40,7 +40,9 @@ async function play(game, x_player, o_player){
             letter = 'x';
             player = x_player;
         }
-    }   
+    } 
+    // empate, así que le pasamos null  
+    print_winner(null);
 }
 
 
@@ -49,7 +51,6 @@ async function start_game() {
     do{
         play_again = false;
         await play(game, x_player, o_player);
-        //alert('empate!');
         endGame();
         // devuelve true si se ha pulsado en jugar otra vez
         play_again = await resetGame(game);
